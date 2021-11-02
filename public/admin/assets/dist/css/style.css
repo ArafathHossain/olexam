@@ -4449,7 +4449,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
     overflow: hidden;
     padding: 10px 20px;
     padding: .625rem 1.25rem;
-    border: 1px solid #e0e6ed;
+    /* border: 1px solid #e0e6ed; */
     border-radius: .25rem;
     color: #8492a6;
     background-color: #fff;
@@ -4460,10 +4460,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
 .custom-input-file+label i {
     width: 1em;
     height: 1em;
-    vertical-align: middle;
-    fill: currentColor;
     margin-top: -.25em;
-    margin-right: .5em
+    /* vertical-align: middle;
+    fill: currentColor;
+   
+    margin-right: .5em */
 }
 
 .custom-input-file+label:hover,
