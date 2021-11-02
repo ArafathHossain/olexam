@@ -1,0 +1,4 @@
+Footer: background:#0a2a66; //Dark Blue
+Hover: #1865f2; //Light Blue
+
+oldColor: #da0b4e
