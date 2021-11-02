@@ -3,6 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-10 mx-auto">
         <div class="olm_questions_form">
+          <div class="card p-3 shadow">
           <div class="row">
             <div class="col-md-3">
               <label for="">MCQ SL#</label>
@@ -73,13 +74,14 @@
               </div>
             </div>
           </div>
+          </div>
           <hr>
           <div
             class="olm_ques_form_item"
             v-for="(fields, main_index) in form_fields"
             :key="main_index"
           >
-            <div class="card">
+            <div class="card shadow">
               <div class="card-body pb-0">
                 <div class="olm_ques_item_head">
                   <div class="row">
@@ -112,12 +114,27 @@
                         /> -->
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-1">
+                      <div v-if="!fields.questions_photo">
+                          <input
+                            type="file"
+                            :id="`ques_${fields.field_id}_photo`"
+                            class="custom-input-file"
+                            :on="fields.questions_photo"
+                            @change="ques_title_photo($event, main_index)"
+                          />
+                          <label :for="`ques_${fields.field_id}_photo`">
+                            <i class="fas fa-image zoom"></i>
+                          </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
                       <div class="form-group">
                         <select
                           class="form-control"
                           :id="`ques_${fields.field_id}_type`"
-                          v-model="fields.select_type"
+                          v-model="fields.select_type" style="width: 120%; margin-left: -20px;"
                         >
                           <option
                             v-for="types in fields.questions_type"
@@ -130,19 +147,6 @@
                         </select>
                       </div>
                       <div>
-                        <div v-if="!fields.questions_photo">
-                          <input
-                            type="file"
-                            :id="`ques_${fields.field_id}_photo`"
-                            class="custom-input-file custom-input-file--2"
-                            :on="fields.questions_photo"
-                            @change="ques_title_photo($event, main_index)"
-                          />
-                          <label :for="`ques_${fields.field_id}_photo`">
-                            <i class="fa fa-upload"></i>
-                            <span>Image Upload</span>
-                          </label>
-                        </div>
                         <div
                           v-if="fields.questions_photo"
                           class="position-relative"
@@ -175,7 +179,8 @@
                     :key="index"
                   >
                     <div class="row align-items-center">
-                      <div class="col-md-8">
+
+                      <div class="col-md-10">
                         <div
                           class="form-group option_item d-flex align-items-center"
                         >
@@ -209,13 +214,14 @@
                           </span>
                         </div>
                       </div>
-                      <div class="col-md-2">
+                      
+                      <div class="col-md-1">
                         <div v-if="fields.ans_mode == false">
                           <div v-if="!option.input_photo">
                             <input
                               type="file"
                               :id="`ans_${option.option_id}_opt_photo_${fields.field_id}`"
-                              class="custom-input-file custom-input-file--2"
+                              class="custom-input-file"
                               @change="
                                 ans_option_photo($event, main_index, index)
                               "
@@ -223,8 +229,7 @@
                             <label
                               :for="`ans_${option.option_id}_opt_photo_${fields.field_id}`"
                             >
-                              <i class="fa fa-upload"></i>
-                              <span>Image Upload</span>
+                              <i class="fas fa-image zoom"></i>
                             </label>
                           </div>
                           <div
@@ -247,6 +252,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="col-md-1">
                       <div
                         class="col-md-2 text-right"
                         v-show="index != 0"
@@ -261,6 +267,11 @@
                           <i class="fas fa-times"></i>
                         </span>
                       </div>
+                      </div>
+                      <div class="col-md-1">
+                        
+                      </div>
+
                     </div>
                   </div>
                   <div
@@ -829,5 +840,16 @@ export default {
   left: -10px;
   cursor: pointer;
   font-size: 20px;
+}
+
+.shadow{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.zoom {
+  zoom: 270%;
+  margin-left: -7px;
+}
+.ql-editor{
+      height: 150px;
 }
 </style>
